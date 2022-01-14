@@ -3,12 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameOverWindow;    
+    [SerializeField] private Canvas _gameOverWindow;
+
+    private Vector3 _spawnPosition = new Vector3(0, 0);
+
+    private void Start()
+    {
+        _gameOverWindow.worldCamera = FindObjectOfType<Camera>();
+        EventSystem.OnGameOver.AddListener(StopGame);
+    }
 
     public void StopGame()
     {
+        Debug.Log("Game over");
         Time.timeScale = 0;
-        _gameOverWindow.gameObject.SetActive(true);
+        Instantiate(_gameOverWindow, _spawnPosition, Quaternion.identity);
     }
 
     public void StartNewGame()

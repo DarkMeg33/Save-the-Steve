@@ -14,6 +14,11 @@ public abstract class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Remove();
+    }
+
+    private void Remove()
+    {
         Destroy(gameObject);
         IncreaseScore();
     }

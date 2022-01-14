@@ -6,6 +6,6 @@ public class HealthBar : MonoBehaviour
 
     public void HealthChange(int health)
     {
-        _hearts[health].gameObject.SetActive(false);
+        _hearts[health].ChangeSprite();
     }
 }

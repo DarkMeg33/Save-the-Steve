@@ -18,8 +18,7 @@ public class Health : MonoBehaviour
     {
         if (damage >= _value)
         {
-            Debug.Log("Game over");
-            BroadcastMessage("StopGame");
+            EventSystem.SendGameOver();
         }
 
         if (damage == 0)
