@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -12,25 +13,22 @@ public class SpawnManager : MonoBehaviour
         _timeCounter = _spawnTime;
     }
 
-    private void FixedUpdate()
+    private void Start()
     {
-        StartSpawn();
+        StartCoroutine(StartSpawn());
     }
 
-    public void StartSpawn()
+    public IEnumerator StartSpawn()
     {
-        if (_timeCounter <= 0)
+        while (true)
         {
-            _timeCounter = _spawnTime;
-
             int randomSpawner = Random.Range(0, _enemySpawners.Length);
             Vector3 spawnPosition = _enemySpawners[randomSpawner].transform.position;
 
+            yield return new WaitForSeconds(_timeCounter);
+
             _enemySpawners[randomSpawner].SpawnEnemy(spawnPosition);
         }
-        else
-        {
-            _timeCounter -= Time.deltaTime;
-        }
+
     }
 }

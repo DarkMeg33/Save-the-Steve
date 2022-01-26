@@ -2,17 +2,16 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    protected Player Player;
+    protected Weapon _weapon;
     protected abstract int Points { get; set; }
     protected abstract int Damage { get; set; }
 
     private void Awake()
     {
-        var obj = GameObject.FindGameObjectWithTag("MainCamera");
-        Player = obj.GetComponent<Player>();
+        EventSystem.OnWeaponChanged.AddListener(ChangeWeapon);
     }
 
-    private void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         Remove();
     }
@@ -20,7 +19,7 @@ public abstract class Enemy : MonoBehaviour
     private void Remove()
     {
         Destroy(gameObject);
-        IncreaseScore();
+        EventSystem.SendEnemyKilled(Points);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,17 +27,12 @@ public abstract class Enemy : MonoBehaviour
         if (other.TryGetComponent(out DeadLine deadLine))
         {
             Destroy(gameObject);
-            ApplyDamage();
+            EventSystem.SendEnemyDestroyed(Damage);
         }
     }
 
-    public void ApplyDamage()
+    private void ChangeWeapon(Weapon weapon)
     {
-        Player.GetDamage(Damage);
-    }
-
-    public void IncreaseScore()
-    {
-        Player.IncreaseScore(Points);
+        _weapon = weapon;
     }
 }

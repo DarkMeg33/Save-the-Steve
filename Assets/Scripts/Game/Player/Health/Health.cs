@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private HealthBar _healthBar;
-
     private int _value;
 
     public int Value => _value;
@@ -12,13 +10,14 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         _value = 10;
+        EventSystem.OnEnemyDestroyed.AddListener(GetDamage);
     }
 
     public void GetDamage(int damage)
     {
         if (damage >= _value)
         {
-            EventSystem.SendGameOver();
+            EventSystem.SendGameIsOver();
         }
 
         if (damage == 0)
@@ -27,6 +26,6 @@ public class Health : MonoBehaviour
         }
 
         _value -= damage;
-        _healthBar.HealthChange(_value);
+        EventSystem.SendHealthChanges(_value);
     }
 }

@@ -11,6 +11,8 @@ public class Score : MonoBehaviour
 
     private void Awake()
     {
+        EventSystem.OnEnemyKilled.AddListener(IncreaseScore);
+
         _value = 0;
         _highestScore = PlayerPrefs.GetInt("HighestScore");
         _scoreText = GetComponent<Text>();
