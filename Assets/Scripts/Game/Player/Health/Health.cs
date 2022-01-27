@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -25,7 +24,10 @@ public class Health : MonoBehaviour
             return;
         }
 
-        _value -= damage;
-        EventSystem.SendHealthChanges(_value);
+        for (int i = 0; i < damage; i++)
+        {
+            _value--;
+            EventSystem.SendHealthChanges(_value);
+        }
     }
 }

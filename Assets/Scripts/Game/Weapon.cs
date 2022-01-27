@@ -2,23 +2,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public void OnMouseDown()
-    {
-        ChangeWeapon();
-    }
-
-    public void ChangeWeapon()
-    {
-        if (TryGetComponent(out Bow bow))
-        {
-            EventSystem.SendWeaponChanged(gameObject.AddComponent<Sword>());
-            Destroy(this);
-        }
-        else
-        {
-            EventSystem.SendWeaponChanged(gameObject.AddComponent<Bow>());
-            Destroy(this);
-        }
-        
-    }
+    public bool IsBow() => TryGetComponent(out Bow bow);
+    public bool IsSword() => TryGetComponent(out Sword sword);
+    public void DeleteComponent() => Destroy(this);
 }
