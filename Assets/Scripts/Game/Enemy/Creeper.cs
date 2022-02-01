@@ -5,8 +5,12 @@ public class Creeper : Enemy
     protected override int Points { get; set; } = 30;
     protected override int Damage { get; set; } = 2;
 
-    public override void OnMouseDown()
+    protected override void Remove()
     {
-        base.OnMouseDown();
+        if (Player.WeaponEquipped.IsBow())
+        {
+            Destroy(gameObject);
+            EventSystem.SendEnemyKilled(Points);
+        }
     }
 }

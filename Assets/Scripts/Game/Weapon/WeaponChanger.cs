@@ -31,7 +31,5 @@ public class WeaponChanger : MonoBehaviour
             _currentWeapon.DeleteComponent();
             _currentWeapon = _currentWeapon.gameObject.AddComponent<Bow>();
         }
-
-        EventSystem.SendWeaponChanged(_currentWeapon);
     }
 }

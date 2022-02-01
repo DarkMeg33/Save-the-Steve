@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(StartSpawn());
     }
 
-    public virtual IEnumerator StartSpawn()
+    public IEnumerator StartSpawn()
     {
         while (true)
         {
