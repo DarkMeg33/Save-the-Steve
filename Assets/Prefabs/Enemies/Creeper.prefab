@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1917087756107611785}
   - component: {fileID: 3475332677125683932}
   - component: {fileID: 5513818491045698573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Creeper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

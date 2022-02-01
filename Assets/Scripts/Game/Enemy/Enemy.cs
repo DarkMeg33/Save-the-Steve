@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : MonoBehaviour
 {
     protected Weapon _weapon;
@@ -14,6 +15,11 @@ public abstract class Enemy : MonoBehaviour
     public virtual void OnMouseDown()
     {
         Remove();
+    }
+
+    public void Move(Vector2 spawnDirection, float impulseForce)
+    {
+        GetComponent<Rigidbody2D>().AddForce(spawnDirection * impulseForce, ForceMode2D.Impulse);
     }
 
     private void Remove()

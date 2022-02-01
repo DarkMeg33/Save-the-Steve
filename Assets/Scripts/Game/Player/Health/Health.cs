@@ -28,6 +28,8 @@ public class Health : MonoBehaviour
         {
             _value--;
             EventSystem.SendHealthChanges(_value);
+
+            if (_value == 0) break;
         }
     }
 }
