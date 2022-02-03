@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
     public void IncreaseScore(int points)
     {
         _value += points;
-        _scoreText.text = _value.ToString();
+        _scoreText.text = "Score: " + _value;
 
         if (_value > _highestScore)
         {

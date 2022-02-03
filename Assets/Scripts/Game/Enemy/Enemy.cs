@@ -16,7 +16,7 @@ public abstract class Enemy : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(spawnDirection * impulseForce, ForceMode2D.Impulse);
     }
 
-    protected virtual void Remove()
+    public virtual void Remove()
     {
         if (Player.WeaponEquipped.IsSword())
         {
