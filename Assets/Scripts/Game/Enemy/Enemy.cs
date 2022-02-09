@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : MonoBehaviour
@@ -20,8 +21,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (Player.WeaponEquipped.IsSword())
         {
-            Destroy(gameObject);
-            EventSystem.SendEnemyKilled(Points);
+            RemoveAt(EventSystem.OnEnemyKilled, Points);
         }
     }
 
@@ -29,8 +29,13 @@ public abstract class Enemy : MonoBehaviour
     {
         if (other.TryGetComponent(out DeadLine deadLine))
         {
-            Destroy(gameObject);
-            EventSystem.SendEnemyDestroyed(Damage);
+            RemoveAt(EventSystem.OnEnemyDestroyed, Damage);
         }
+    }
+
+    protected void RemoveAt(UnityEvent<int> action, int param)
+    {
+        Destroy(gameObject);
+        action.Invoke(param);
     }
 }

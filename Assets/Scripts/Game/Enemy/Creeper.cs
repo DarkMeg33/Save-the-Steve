@@ -9,8 +9,11 @@ public class Creeper : Enemy
     {
         if (Player.WeaponEquipped.IsBow())
         {
-            Destroy(gameObject);
-            EventSystem.SendEnemyKilled(Points);
+            RemoveAt(EventSystem.OnEnemyKilled, Points);
+        }
+        else if (Player.WeaponEquipped.IsSword())
+        {
+            RemoveAt(EventSystem.OnEnemyDestroyed, Damage);
         }
     }
 }
