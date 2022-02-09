@@ -7,6 +7,7 @@ public class Steve : Enemy
 
     public override void Remove()
     {
+        _deathSound.Play();
         RemoveAt(EventSystem.OnEnemyDestroyed, Damage);
     }
 

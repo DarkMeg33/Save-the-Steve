@@ -4,6 +4,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : MonoBehaviour
 {
+    [SerializeField] protected AudioSource _deathSound;
+
     protected abstract int Points { get; set; }
     protected abstract int Damage { get; set; }
 
@@ -21,6 +23,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (Player.WeaponEquipped.IsSword())
         {
+            _deathSound.Play();
             RemoveAt(EventSystem.OnEnemyKilled, Points);
         }
     }
