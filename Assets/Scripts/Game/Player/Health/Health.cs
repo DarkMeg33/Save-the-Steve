@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private AudioSource _damageApplied;
+
     private int _value;
 
     public int Value => _value;
@@ -12,7 +14,7 @@ public class Health : MonoBehaviour
         EventSystem.OnEnemyDestroyed.AddListener(GetDamage);
     }
 
-    public void GetDamage(int damage)
+    private void GetDamage(int damage)
     {
         if (damage >= _value)
         {
@@ -27,9 +29,15 @@ public class Health : MonoBehaviour
         for (int i = 0; i < damage; i++)
         {
             _value--;
+            PlayDamageAppliedSound();
             EventSystem.SendHealthChanges(_value);
 
             if (_value == 0) break;
         }
+    }
+
+    private void PlayDamageAppliedSound()
+    {
+        _damageApplied.Play();
     }
 }

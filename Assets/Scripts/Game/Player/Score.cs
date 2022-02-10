@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     [SerializeField] private Text _highestScoreInscription;
+    [SerializeField] private AudioSource _scoreChangedSound;
+    [SerializeField] private AudioSource _newRecordSound;
 
     private int _value;
     private int _highestScore;
@@ -24,10 +26,11 @@ public class Score : MonoBehaviour
         _scoreText = GetComponent<Text>();
     }
 
-    public void IncreaseScore(int points)
+    private void IncreaseScore(int points)
     {
         _value += points;
         _scoreText.text = "Score: " + _value;
+        _scoreChangedSound.Play();
 
         if (!_isRecord)
             CheckRecord(_value);
@@ -54,6 +57,7 @@ public class Score : MonoBehaviour
     private IEnumerator Congratulate()
     {
        _highestScoreInscription.gameObject.SetActive(true);
+       _newRecordSound.Play();
 
         yield return new WaitForSeconds(5);
 

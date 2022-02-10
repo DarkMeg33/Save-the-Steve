@@ -6,6 +6,9 @@ public class WeaponChanger : MonoBehaviour
     [SerializeField] private Sprite _swordSprite;
     [SerializeField] private Sprite _bowSprite;
 
+    [SerializeField] private AudioSource _bowEquippedSound;
+    [SerializeField] private AudioSource _swordEquippedSound;
+
     [SerializeField] private Image _weaponImage;
 
     private Weapon _currentWeapon;
@@ -27,6 +30,7 @@ public class WeaponChanger : MonoBehaviour
         else if (_currentWeapon.IsSword())
         {
             _weaponImage.overrideSprite = _bowSprite;
+            _bowEquippedSound.Play();
 
             _currentWeapon.DeleteComponent();
             _currentWeapon = _currentWeapon.gameObject.AddComponent<Bow>();
