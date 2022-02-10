@@ -11,12 +11,12 @@ public class Creeper : Enemy
     {
         if (Player.WeaponEquipped.IsBow())
         {
-            _deathSound.Play();
+            SoundManager.OnCreeperKilled.Invoke();
             RemoveAt(EventSystem.OnEnemyKilled, Points);
         }
         else if (Player.WeaponEquipped.IsSword())
         {
-            _explosionSound.Play();
+            SoundManager.OnCreeperExplosion.Invoke();
             RemoveAt(EventSystem.OnEnemyDestroyed, Damage);
         }
     }

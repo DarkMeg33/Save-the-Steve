@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,7 +24,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (Player.WeaponEquipped.IsSword())
         {
-            _deathSound.Play();
+            SoundManager.OnZombieKilled.Invoke();
             RemoveAt(EventSystem.OnEnemyKilled, Points);
         }
     }
