@@ -10,10 +10,10 @@ public abstract class Enemy : MonoBehaviour
     protected abstract int Points { get; set; }
     protected abstract int Damage { get; set; }
 
-    public void OnMouseDown()
-    {
-        Remove();
-    }
+    //public void OnMouseDown()
+    //{
+    //    Remove();
+    //}
 
     public void Move(Vector2 spawnDirection, float impulseForce)
     {

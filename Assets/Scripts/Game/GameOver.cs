@@ -19,9 +19,4 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 0;
         Instantiate(_gameOverWindow, _spawnPosition, Quaternion.identity);
     }
-
-    public void StartNewGame()
-    {
-        SceneManager.LoadScene("Game");
-    }
 }
